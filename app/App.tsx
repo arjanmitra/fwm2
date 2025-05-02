@@ -70,7 +70,7 @@ export default function App() {
     };
 
     return (<>
-        {firstLaunch ? <LandingPage onContinue={handleContinue} /> : <LoginModal
+        {firstLaunch ? <LandingPage onFinish={handleContinue} /> : <LoginModal
             visible={showModal}
             onClose={() => setShowModal(false)}
             onLogin={handleLogin}
