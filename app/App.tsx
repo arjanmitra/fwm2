@@ -11,17 +11,22 @@ import LoginModal from './components/LoginModal';
 import DevResetTool from '@/components/DevResetTool';
 import LandingPage from './components/LandingPage';
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
+interface AppProps {
+    screenWidth: number
+    screenHeight: number
+}
+
+
 SplashScreen.preventAutoHideAsync();
 
-export default function App() {
+export default function App({ screenWidth, screenHeight }: AppProps) {
     const [initializing, setInitializing] = useState(true);
     const [firstLaunch, setFirstLaunch] = useState(false);
     const [isSignedIn, setIsSignedIn] = useState(false);
     const [showModal, setShowModal] = useState(!isSignedIn);
 
     const [loaded] = useFonts({
-        SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+        Raleway: require('../assets/fonts/Raleway-VariableFont_wght.ttf'),
     });
 
     useEffect(() => {
@@ -70,17 +75,20 @@ export default function App() {
     };
 
     return (<>
-        {firstLaunch ? <LandingPage onFinish={handleContinue} /> : <LoginModal
+        {/* {firstLaunch ? <LandingPage onFinish={handleContinue} /> : <LoginModal
             visible={showModal}
             onClose={() => setShowModal(false)}
             onLogin={handleLogin}
-        />}
+        />} */}
         {!firstLaunch ? <><Stack>
             <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
             <Stack.Screen name="+not-found" />
         </Stack>
             <StatusBar style="auto" />
-            <DevResetTool /></> : <></>}
+            {/* <DevResetTool /> */}
+        </>
+            : <></>
+        }
     </>
     );
 }

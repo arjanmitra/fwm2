@@ -16,17 +16,22 @@ const slides = [
     {
         key: 'run',
         title: 'Track your runs',
-        image: require('../../assets/images/running.jpg'), // Replace with Lottie or static asset
+        image: require('../../assets/images/running.jpg'),
     },
     {
         key: 'lift',
         title: 'Log your lifts',
-        image: require('../../assets/images/lifting.jpg'),
+        image: require('../../assets/images/calesthenics.jpg'),
     },
     {
         key: 'track',
         title: 'Monitor your progress',
         image: require('../../assets/images/checkingPhone.jpg'),
+    },
+    {
+        key: 'squat',
+        title: 'Ready to begin?',
+        image: require('../../assets/images/girlSquat.jpg'),
     },
 ];
 
@@ -75,20 +80,16 @@ export default function LandingScreen({ onFinish }: { onFinish: () => void }) {
                     { useNativeDriver: true }
                 )}
             >
-                {slides.map((slide) => (
+                {slides.map((slide, i) => (
                     <View style={styles.slide} key={slide.key}>
                         <Text style={styles.title}>{slide.title}</Text>
-                        {/* <Image source={slide.image} style={styles.image} resizeMode="contain" /> */}
+                        {i == slides.length - 1 ?
+                            <Pressable style={styles.button} onPress={onFinish}>
+                                <Text style={styles.buttonText}>Get Started</Text>
+                            </Pressable> : <></>}
                     </View>
                 ))}
 
-                {/* Final screen */}
-                <View style={styles.slide}>
-                    <Text style={styles.title}>Ready to begin?</Text>
-                    <Pressable style={styles.button} onPress={onFinish}>
-                        <Text style={styles.buttonText}>Get Started</Text>
-                    </Pressable>
-                </View>
             </Animated.ScrollView>
         </View>
     );
@@ -110,9 +111,9 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 40,
-        fontWeight: '700',
+        fontWeight: '500',
         textAlign: 'center',
-        verticalAlign: 'top',
+        verticalAlign: 'bottom',
         marginBottom: 30,
         color: 'white'
     },

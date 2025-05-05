@@ -18,11 +18,12 @@ export default function TabLayout() {
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
         tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
+        // tabBarBackground: TabBarBackground,
         tabBarStyle: Platform.select({
           ios: {
             // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
+            // position: 'absolute',
+            backgroundColor: "#36454F",
           },
           default: {},
         }),
@@ -35,14 +36,14 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="workout"
+        name="WorkoutScreen"
         options={{
           title: 'Workouts',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="dumbbell.fill" color={color} />,
         }}
       />
       <Tabs.Screen
-        name="smartLog"
+        name="SmartLogScreen"
         options={{
           title: '',
           tabBarIcon: ({ color }) => <View style={{ marginTop: 10 }}><IconSymbol size={35} name="dot.circle" color={'red'} /></View>,
@@ -50,14 +51,14 @@ export default function TabLayout() {
 
       />
       <Tabs.Screen
-        name="run"
+        name="RunScreen"
         options={{
           title: 'Runs',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="figure.run" color={color} />,
         }}
       />
       <Tabs.Screen
-        name="eat"
+        name="FoodLogScreen"
         options={{
           title: 'Food Log',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="fork.knife.circle" color={color} />,

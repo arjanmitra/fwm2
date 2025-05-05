@@ -19,7 +19,7 @@ const workouts = [
   // add more here...
 ];
 
-const WorkoutList = () => {
+const WorkoutScreen = () => {
   const renderItem = ({ item }: { item: { id: string; title: string } }) => (
     <TouchableOpacity
       style={[
@@ -45,7 +45,7 @@ const WorkoutList = () => {
   );
 };
 
-export default WorkoutList;
+export default WorkoutScreen;
 
 const styles = StyleSheet.create({
   container: {
