@@ -5,11 +5,12 @@ interface AuthLoginButtonProps {
     title: string
     onPress: () => void
     width: number
+    bgColor: string
 }
 
 const screenWidth = Dimensions.get('window').width;
 
-const GenericButton: React.FC<AuthLoginButtonProps> = ({ onPress, title, width }) => {
+const GenericButton: React.FC<AuthLoginButtonProps> = ({ onPress, title, width, bgColor }) => {
 
     const styles = StyleSheet.create({
         button: {
@@ -17,7 +18,7 @@ const GenericButton: React.FC<AuthLoginButtonProps> = ({ onPress, title, width }
             alignItems: 'center',
             justifyContent: 'center',
             alignSelf: 'center',
-            backgroundColor: 'white',
+            backgroundColor: bgColor,
             borderRadius: 20,
             paddingVertical: 12,
             paddingHorizontal: 20,
@@ -37,7 +38,7 @@ const GenericButton: React.FC<AuthLoginButtonProps> = ({ onPress, title, width }
             marginRight: 10,
         },
         text: {
-            color: '#000',
+            color: 'white',
             fontWeight: '500',
 
         },

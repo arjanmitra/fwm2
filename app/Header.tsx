@@ -2,6 +2,8 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { IconSymbol } from '@/components/ui/IconSymbol';
 import { useSegments } from 'expo-router';
+import { Link } from 'expo-router';
+import { Stack } from 'expo-router';
 
 const Header = () => {
     const segments = useSegments(); // returns an array like ['(tabs)', 'home']
@@ -9,35 +11,39 @@ const Header = () => {
     const getTitle = () => {
         const current = segments[segments.length - 1];
         switch (current) {
-            case 'WorkoutScreen':
+            case 'workouts':
                 return 'Workouts';
-            case 'SmartLogScreen':
+            case 'smartLog':
                 return '';
-            case 'RunScreen':
+            case 'runs':
                 return 'Runs';
-            case 'FoodLogScreen':
+            case 'foodLog':
                 return 'Food Log';
             default:
                 return 'Home';
         }
     };
     return (
-        <View style={styles.container}>
-            {/* User avatar */}
-            <TouchableOpacity>
-                <Image
-                    source={{ uri: 'https://randomuser.me/api/portraits/men/1.jpg' }} // Replace with user's image
-                    style={styles.avatar}
-                />
-            </TouchableOpacity>
+        <>
+            <View style={styles.container}>
+                <Link href="/components/ProfilePage" asChild>
+                    <TouchableOpacity>
+                        <Image
+                            source={{ uri: 'https://randomuser.me/api/portraits/men/1.jpg' }} // Replace with user's image
+                            style={styles.avatar}
+                        />
+                    </TouchableOpacity>
+                </Link>
 
-            <Text style={styles.title}>{getTitle()}</Text>
+                <Text style={styles.title}>{getTitle()}</Text>
 
-            {/* Notification bell */}
-            <TouchableOpacity>
-                <IconSymbol name="bell.fill" size={24} color="white" />
-            </TouchableOpacity>
-        </View>
+                {/* Notification bell */}
+                <TouchableOpacity>
+                    <IconSymbol name="bell.fill" size={24} color="white" />
+                </TouchableOpacity>
+            </View>
+        </>
+
     );
 };
 

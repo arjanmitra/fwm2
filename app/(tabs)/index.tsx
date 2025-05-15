@@ -7,42 +7,56 @@ import { ScrollView } from 'react-native';
 import GenericButton from '../components/buttons/GenericButton';
 import { TouchableOpacity } from 'react-native';
 import { View } from 'react-native';
+import { useAuth } from '../context/AuthContext';
 import workoutData from '../../constants/data/workoutData.json'
 
 const { width, height } = Dimensions.get('window')
 
 export default function HomeScreen() {
+  const { user, loading } = useAuth();
+
+  console.log(user, loading)
+
+  if (loading) return <ThemedText>Loading...</ThemedText>
+
   return (
     <ScrollView style={styles.container}>
+      {user ?
+        <View>
+          <ThemedView style={styles.titleContainer}>
+            <ThemedText type='title' style={styles.titleText}>Welcome back.</ThemedText>
+          </ThemedView>
 
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type='title' style={styles.titleText}>Let's get to it.</ThemedText>
-      </ThemedView>
+          <View style={styles.addButtonsContainer}>
+            <GenericButton onPress={() => console.log('hello')} title={'Add Workout'} bgColor={'#007A52'} width={width / 2 - 20} />
+            <GenericButton onPress={() => console.log('hello')} title={'Add Run'} bgColor={'#007A52'} width={width / 2 - 20} />
+            <GenericButton onPress={() => console.log('hello')} title={'Food Log'} bgColor={'#00657A'} width={width - 20} />
+          </View>
 
-      <View style={styles.addButtonsContainer}>
-        <GenericButton onPress={() => console.log('hello')} title={'Add Workout'} width={width / 2 - 20} />
-        <GenericButton onPress={() => console.log('hello')} title={'Add Run'} width={width / 2 - 20} />
-        <GenericButton onPress={() => console.log('hello')} title={'Food Log'} width={width - 20} />
-      </View>
+          {/* workout data */}
+          <View>
 
-      {/* workout data */}
-      <View>
+            <ThemedView style={styles.titleContainer}>
+              <ThemedText type='default' style={styles.subSectionTitle}>Recent Activity</ThemedText>
+            </ThemedView>
 
-        <ThemedView style={styles.titleContainer}>
-          <ThemedText type='default' style={styles.subSectionTitle}>Recent Activity</ThemedText>
-        </ThemedView>
+            {workoutData.map((w, i) => {
+              return (
+                <TouchableOpacity key={i} style={styles.workoutContainer}>
+                  <ThemedText type='defaultSemiBold' style={{ marginLeft: 20, margin: 2 }}>{w.title}</ThemedText>
+                  <ThemedText style={{ marginLeft: 20, margin: 2 }}>Duration: {w.duration} mins.</ThemedText>
+                  <ThemedText style={{ marginLeft: 20, margin: 2 }}>Date: {w.date}</ThemedText>
+                </TouchableOpacity>
+              )
+            })}
 
-        {workoutData.map((w, i) => {
-          return (
-            <TouchableOpacity key={i} style={styles.workoutContainer}>
-              <ThemedText type='defaultSemiBold' style={{ marginLeft: 20, margin: 2 }}>{w.title}</ThemedText>
-              <ThemedText style={{ marginLeft: 20, margin: 2 }}>Duration: {w.duration} mins.</ThemedText>
-              <ThemedText style={{ marginLeft: 20, margin: 2 }}>Date: {w.date}</ThemedText>
-            </TouchableOpacity>
-          )
-        })}
+          </View>
+        </View> :
+        <ThemedText>
+          Please sign in.
+        </ThemedText>}
 
-      </View>
+
 
     </ScrollView>
   );
@@ -63,7 +77,8 @@ const styles = StyleSheet.create({
   },
   titleText: {
     color: 'white',
-    fontWeight: 300
+    fontWeight: 300,
+    marginTop: 10
   },
   subSectionTitle: {
     color: 'white',
@@ -86,7 +101,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   workoutContainer: {
-    backgroundColor: '#6082B6',
+    backgroundColor: '#353839',
     borderRadius: 20,
     color: 'white',
     margin: 10

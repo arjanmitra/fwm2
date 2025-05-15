@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import 'react-native-reanimated';
 import { View, Text, Button, ActivityIndicator, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useAuth } from './context/AuthContext';
 
 import LoginModal from './components/LoginModal';
 import DevResetTool from '@/components/DevResetTool';
@@ -20,6 +21,7 @@ interface AppProps {
 SplashScreen.preventAutoHideAsync();
 
 export default function App({ screenWidth, screenHeight }: AppProps) {
+    const { user, loading } = useAuth();
     const [initializing, setInitializing] = useState(true);
     const [firstLaunch, setFirstLaunch] = useState(false);
     const [isSignedIn, setIsSignedIn] = useState(false);
@@ -75,11 +77,13 @@ export default function App({ screenWidth, screenHeight }: AppProps) {
     };
 
     return (<>
-        {/* {firstLaunch ? <LandingPage onFinish={handleContinue} /> : <LoginModal
-            visible={showModal}
-            onClose={() => setShowModal(false)}
-            onLogin={handleLogin}
-        />} */}
+        {firstLaunch && user ?
+            <LandingPage onFinish={handleContinue} /> :
+            <LoginModal
+                visible={showModal}
+                onClose={() => setShowModal(false)}
+                onLogin={handleLogin}
+            />}
         {!firstLaunch ? <><Stack>
             <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
             <Stack.Screen name="+not-found" />

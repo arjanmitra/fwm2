@@ -1,0 +1,86 @@
+[
+    {
+        "id": "custom",
+        "title": "Add Workout"
+    },
+    {
+        "id": "1",
+        "title": "Bench Press"
+    },
+    {
+        "id": "2",
+        "title": "Pec Fly"
+    },
+    {
+        "id": "3",
+        "title": "Incline Dumbbell Press"
+    },
+    {
+        "id": "4",
+        "title": "Push Ups"
+    },
+    {
+        "id": "5",
+        "title": "Chest Dips"
+    },
+    {
+        "id": "6",
+        "title": "Barbell Curl"
+    },
+    {
+        "id": "7",
+        "title": "Hammer Curl"
+    },
+    {
+        "id": "8",
+        "title": "Tricep Pushdown"
+    },
+    {
+        "id": "9",
+        "title": "Overhead Tricep Extension"
+    },
+    {
+        "id": "10",
+        "title": "Shoulder Press"
+    },
+    {
+        "id": "11",
+        "title": "Lateral Raises"
+    },
+    {
+        "id": "12",
+        "title": "Lat Pulldown"
+    },
+    {
+        "id": "13",
+        "title": "Pull Ups"
+    },
+    {
+        "id": "14",
+        "title": "Deadlift"
+    },
+    {
+        "id": "15",
+        "title": "Squats"
+    },
+    {
+        "id": "16",
+        "title": "Leg Press"
+    },
+    {
+        "id": "17",
+        "title": "Lunges"
+    },
+    {
+        "id": "18",
+        "title": "Plank"
+    },
+    {
+        "id": "19",
+        "title": "Mountain Climbers"
+    },
+    {
+        "id": "20",
+        "title": "Bicycle Crunches"
+    }
+]

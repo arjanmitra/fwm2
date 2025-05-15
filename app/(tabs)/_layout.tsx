@@ -8,6 +8,8 @@ import { IconSymbol } from '@/components/ui/IconSymbol';
 import TabBarBackground from '@/components/ui/TabBarBackground';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
+import HeaderProfile from '../components/header/HeaderProfile';
+import HeaderNotifications from '../components/header/HeaderNotifications';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -16,7 +18,14 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
+        headerShown: true,
+        headerTitle: 'fitWithMit',
+        headerTitleStyle: {
+          color: 'white'
+        },
+        headerStyle: {
+          backgroundColor: "#36454F",
+        },
         tabBarButton: HapticTab,
         // tabBarBackground: TabBarBackground,
         tabBarStyle: Platform.select({
@@ -33,17 +42,19 @@ export default function TabLayout() {
         options={{
           title: 'Home',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          headerLeft: () => <HeaderProfile />,
+          headerRight: () => <HeaderNotifications />
         }}
       />
       <Tabs.Screen
-        name="WorkoutScreen"
+        name="workouts/index"
         options={{
           title: 'Workouts',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="dumbbell.fill" color={color} />,
         }}
       />
       <Tabs.Screen
-        name="SmartLogScreen"
+        name="smartLog/index"
         options={{
           title: '',
           tabBarIcon: ({ color }) => <View style={{ marginTop: 10 }}><IconSymbol size={35} name="dot.circle" color={'red'} /></View>,
@@ -51,14 +62,14 @@ export default function TabLayout() {
 
       />
       <Tabs.Screen
-        name="RunScreen"
+        name="runs/index"
         options={{
           title: 'Runs',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="figure.run" color={color} />,
         }}
       />
       <Tabs.Screen
-        name="FoodLogScreen"
+        name="foodLog/index"
         options={{
           title: 'Food Log',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="fork.knife.circle" color={color} />,

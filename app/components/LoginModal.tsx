@@ -1,10 +1,11 @@
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../utils/firebase';
 import React, { useState } from 'react';
 import { Modal, View, Text, TextInput, Button, StyleSheet, TouchableOpacity, KeyboardAvoidingView, Platform, Dimensions } from 'react-native';
 import Divider from './Divider';
 import AuthLoginButton from './buttons/AuthLoginButton';
 import { ThemedText } from '@/components/ThemedText';
+import CloseButton from '@/components/CloseButton';
 
 interface LoginModalProps {
     visible: boolean;
@@ -51,11 +52,16 @@ const LoginModal: React.FC<LoginModalProps> = ({ visible, onClose, onLogin }) =>
                 style={styles.centeredView}
             >
                 <View style={styles.modalView}>
-                    <Text style={styles.title}>Let's go.</Text>
-                    {/* <ThemedText type={'defaultSemiBold'}>Login</ThemedText> */}
+                    <View style={styles.titleContainer}>
+                        <ThemedText type={'title'} style={styles.title}>Login</ThemedText>
+                        <CloseButton onPress={onClose} />
+                        {/* <Text style={styles.title}>Login</Text> */}
+                    </View>
+
                     <TextInput
                         style={styles.input}
                         placeholder="Email"
+                        placeholderTextColor='white'
                         keyboardType="email-address"
                         autoCapitalize="none"
                         value={email}
@@ -64,6 +70,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ visible, onClose, onLogin }) =>
                     <TextInput
                         style={styles.input}
                         placeholder="Password"
+                        placeholderTextColor='white'
                         secureTextEntry
                         value={password}
                         onChangeText={setPassword}
@@ -92,27 +99,35 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0,0,0,0.5)',
     },
     modalView: {
-        backgroundColor: 'white',
+        backgroundColor: '#353839',
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
         padding: 24,
         alignItems: 'stretch',
     },
+    titleContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: "flex-start"
+    },
     title: {
+        color: 'white',
         fontSize: 30,
         fontWeight: '300',
         marginBottom: 16,
         textAlign: 'center',
+        flex: 1
     },
     input: {
         borderWidth: 1,
-        borderColor: 'white',
-        borderBottomColor: 'gray',
+        borderColor: 'transparent',
+        borderBottomColor: 'white',
         borderRadius: 0,
         marginBottom: 12,
         padding: 10,
         width: width - 120,
-        alignSelf: 'center'
+        alignSelf: 'center',
+        color: 'white'
     },
     closeButton: {
         marginTop: 12,
@@ -144,6 +159,7 @@ const styles = StyleSheet.create({
         textDecorationLine: 'underline'
     },
     registerTextOuter: {
+        color: 'white',
         alignSelf: 'center',
         fontSize: 11,
         margin: 10

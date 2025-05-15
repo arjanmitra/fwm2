@@ -5,6 +5,7 @@ import App from './App';
 import Header from './Header';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { Dimensions } from 'react-native';
+import { AuthProvider } from './context/AuthContext';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -15,9 +16,11 @@ export default function RootLayout() {
   const colorScheme = useColorScheme();
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Header />
-      <App screenWidth={width} screenHeight={height} />
-    </ThemeProvider>
+    <AuthProvider>
+      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+        {/* <Header /> */}
+        <App screenWidth={width} screenHeight={height} />
+      </ThemeProvider>
+    </AuthProvider>
   );
 }
