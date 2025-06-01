@@ -1,5 +1,4 @@
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getAnalytics } from "firebase/analytics";
 
@@ -10,7 +9,7 @@ import {
 
 import ReactNativeAsyncStorage from '@react-native-async-storage/async-storage';
 
-const firebaseConfig = {
+export const firebaseConfig = {
     apiKey: "AIzaSyAVaqXLpONFxaD0BV9qeqlTiydSMVC-Dpk",
     authDomain: "fitwithmit-84f69.firebaseapp.com",
     projectId: "fitwithmit-84f69",

@@ -76,25 +76,38 @@ export default function App({ screenWidth, screenHeight }: AppProps) {
         }
     };
 
-    return (<>
-        {firstLaunch && user ?
-            <LandingPage onFinish={handleContinue} /> :
-            <LoginModal
-                visible={showModal}
-                onClose={() => setShowModal(false)}
-                onLogin={handleLogin}
-            />}
-        {!firstLaunch ? <><Stack>
+    if (firstLaunch && !user) return <LandingPage onFinish={handleContinue} />;
+
+    else if (!firstLaunch && !user) return <LoginModal visible={showModal} onClose={() => setShowModal(false)} onLogin={handleLogin} />
+
+    else if (!firstLaunch && user) return <>
+        <Stack>
             <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
             <Stack.Screen name="+not-found" />
         </Stack>
-            <StatusBar style="auto" />
-            {/* <DevResetTool /> */}
-        </>
-            : <></>
-        }
+        <StatusBar style="auto" />
+        {/* <DevResetTool /> */}
     </>
-    );
+
+    // return (<>
+    //     {(firstLaunch && !user) ?
+    //         <LandingPage onFinish={handleContinue} /> :
+    //         <LoginModal
+    //             visible={showModal}
+    //             onClose={() => setShowModal(false)}
+    //             onLogin={handleLogin}
+    //         />}
+    //     {!firstLaunch ? <><Stack>
+    //         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+    //         <Stack.Screen name="+not-found" />
+    //     </Stack>
+    //         <StatusBar style="auto" />
+    //         {/* <DevResetTool /> */}
+    //     </>
+    //         : <></>
+    //     }
+    // </>
+    // );
 }
 
 const styles = StyleSheet.create({

@@ -1,7 +1,7 @@
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../utils/firebase';
 import React, { useState } from 'react';
-import { Modal, View, Text, TextInput, Button, StyleSheet, TouchableOpacity, KeyboardAvoidingView, Platform, Dimensions } from 'react-native';
+import { Modal, View, Text, TextInput, Button, StyleSheet, TouchableOpacity, KeyboardAvoidingView, Platform, Dimensions, ScrollView } from 'react-native';
 import Divider from './Divider';
 import AuthLoginButton from './buttons/AuthLoginButton';
 import { ThemedText } from '@/components/ThemedText';
@@ -51,7 +51,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ visible, onClose, onLogin }) =>
                 behavior={Platform.OS === "ios" ? "padding" : undefined}
                 style={styles.centeredView}
             >
-                <View style={styles.modalView}>
+                <ScrollView style={styles.modalView}>
                     <View style={styles.titleContainer}>
                         <ThemedText type={'title'} style={styles.title}>Login</ThemedText>
                         <CloseButton onPress={onClose} />
@@ -86,7 +86,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ visible, onClose, onLogin }) =>
                     {/* <TouchableOpacity onPress={onClose} style={styles.closeButton}>
                         <Text style={styles.closeText}>Close</Text>
                     </TouchableOpacity> */}
-                </View>
+                </ScrollView>
             </KeyboardAvoidingView>
         </Modal >
     );
@@ -99,11 +99,11 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0,0,0,0.5)',
     },
     modalView: {
+        paddingTop: 80,
         backgroundColor: '#353839',
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
         padding: 24,
-        alignItems: 'stretch',
     },
     titleContainer: {
         display: 'flex',

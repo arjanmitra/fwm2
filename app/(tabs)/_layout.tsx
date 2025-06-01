@@ -43,7 +43,8 @@ export default function TabLayout() {
           title: 'Home',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
           headerLeft: () => <HeaderProfile />,
-          headerRight: () => <HeaderNotifications />
+          headerRight: () => <HeaderNotifications />,
+          headerTitle: 'Home'
         }}
       />
       <Tabs.Screen
@@ -51,9 +52,12 @@ export default function TabLayout() {
         options={{
           title: 'Workouts',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="dumbbell.fill" color={color} />,
+          headerLeft: () => <HeaderProfile />,
+          headerRight: () => <HeaderNotifications />,
+          headerTitle: 'Workouts'
         }}
       />
-      <Tabs.Screen
+      {/* <Tabs.Screen
         name="smartLog/index"
         options={{
           title: '',
@@ -67,7 +71,7 @@ export default function TabLayout() {
           title: 'Runs',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="figure.run" color={color} />,
         }}
-      />
+      /> */}
       <Tabs.Screen
         name="foodLog/index"
         options={{
